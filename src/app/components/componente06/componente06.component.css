@@ -1,0 +1,24 @@
+.ul {
+    display: inline;
+    width: 100px;
+
+}
+.li {
+    display: inline;
+    width: 100px;
+}
+.texto {
+    display: flex;
+    opacity: 100%;
+    height: max-content;
+    width: 100px;
+}
+
+.fonteVerde {
+    color: green;
+}
+
+.fonteVermelha {
+    height: 100%;
+    color: red;
+}

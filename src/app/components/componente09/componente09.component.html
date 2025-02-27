@@ -1,0 +1,16 @@
+<form [formGroup]="meuForm" (ngSubmit)="enviarForm()">
+
+    <label>Nome:</label>
+    <input type="text" formControlName="nome">
+    <div *ngIf="meuForm.get('nome')?.invalid && meuForm.get('nome')?.touched">
+        Nome é obrigatório
+    </div>
+
+    <label>Email:</label>
+    <input type="email" formControlName="email">
+    <div *ngIf="meuForm.get('email')?.invalid && meuForm.get('email')?.touched">
+        Email é obrigatório
+    </div>
+
+    <button type="submit" [disabled]="meuForm.invalid">Enviar</button>
+</form>

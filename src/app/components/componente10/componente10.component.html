@@ -1,0 +1,59 @@
+<form [formGroup]="myForm">
+
+    @if (myForm.get('nome').hasError('required') && myForm.get('nome').touched) {
+        <p class="alert alert-warning">Campo nome é requerido!</p>
+    }
+    @if (myForm.get('nome').hasError('minlength') && myForm.touched) {
+        <p class="alert alert-warning">Campo nome deve conter no minimo 3 letras</p>
+    }
+    <input type="text"  formControlName="nome" placeholder="Nome" class="form-control">
+
+    @if (myForm.get('idade').hasError('required') && myForm.get('idade').touched) {
+        <p class="alert alert-warning">Campo idade é requerido!</p>
+    }
+    @if (myForm.get('idade').hasError('min') && myForm.get('idade').touched) {
+        <p class="alert alert-warning">Idade deve ser superior a 0.</p>
+    }
+    @if (myForm.get('idade').hasError('max') && myForm.get('idade').touched) {
+        <p class="alert alert-warning">Idade deve ser inferior a 120.</p>
+    }
+    <input type="numer" formControlName="idade"  placeholder="Idade" class="form-control">
+
+    @if (myForm.get('cidade').hasError('required') && myForm.get('cidade').touched) {
+        <p class="alert alert-warning">Campo cidade é requerido!</p>
+    }
+    @if (myForm.get('cidade').hasError('minlength') && myForm.touched) {
+        <p class="alert alert-warning">Campo cidade deve conter no minimo 3 letras</p>
+    }
+    <input type="text"  formControlName="cidade" placeholder="Cidade" class="form-control">
+    
+
+    @if (btnCadastrar) {
+        <input type="button" value="Cadastrar" class="btn btn-primary" [disabled]="myForm.invalid" (click)="cadastrarPessoa()">
+    } @else {
+    <input type="button" value="Alterar" class="btn btn-primary" [disabled]="myForm.invalid" (click)="alterar()">
+    <input type="button" value="Remover" class="btn btn-primary" [disabled]="myForm.invalid" (click)="excluir()">
+    <input type="button" value="Cancelar" class="btn btn-primary" [disabled]="myForm.invalid" (click)="cancelar()">
+    }
+</form>
+
+<table class="table">
+    <thead>
+        <tr> <!-- Linha de dados -->
+            <th>#</th> <!-- Cabeçalho da Coluna 1-->
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of pessoas; index as indice"> <!-- Linha de dados -->
+            <td>{{indice + 1}}</td> <!-- Coluna 1 -->
+            <td>{{p.nome}}</td> <!-- Coluna 2 Nome -->
+            <td>{{p.idade}}</td>
+            <td>{{p.cidade}}</td>
+            <td><button class="btn btn-primary" (click)="selecionar(indice)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
